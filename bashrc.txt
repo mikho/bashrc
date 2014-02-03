@@ -1,0 +1,58 @@
+# ~/.bashrc: executed by bash(1) for non-login shells.
+
+# Note: PS1 and umask are already set in /etc/profile. You should not
+# need this unless you want different defaults for root.
+# PS1='${debian_chroot:+($debian_chroot)}\h:\w\$ '
+# umask 022
+
+# You may uncomment the following lines if you want `ls' to be colorized:
+# export LS_OPTIONS='--color=auto'
+# eval "`dircolors`"
+# alias ls='ls $LS_OPTIONS'
+# alias ll='ls $LS_OPTIONS -l'
+# alias l='ls $LS_OPTIONS -lA'
+#
+# Some more alias to avoid making mistakes:
+# alias rm='rm -i'
+# alias cp='cp -i'
+# alias mv='mv -i'
+# aliases
+alias sysinfo='uname -nsr;
+
+echo -n "Memory: ";
+free -m|grep Mem:|awk "{print\$2}"|tr "\n" " ";
+
+echo -en "MB\nProcessor:\n";
+cat /proc/cpuinfo | egrep "(model name|MHz|cache )" | head -3;
+
+echo -n "Cores: ";
+grep "model name" /proc/cpuinfo | wc -l;
+
+echo -n "Video: ";
+#lspci|grep -i vga|sed -r "s/VGA compatible controller://g;"
+'
+alias ls='ls -hlFb --color=auto --group-directories-first'
+alias la='ls -hlaFb --color=auto --group-directories-first'
+
+# ps1
+RESET="\[\\e[1;0m\\]"
+BLACK="\[\\e[0;30m\\]"
+RED="\[\\e[0;31m\\]"
+GREEN="\[\\e[0;32m\\]"
+BROWN="\[\\e[0;33m\\]"
+BLUE="\[\\e[0;34m\\]"
+PURPLE="\[\\e[0;35m\\]"
+CYAN="\[\\e[0;36m\\]"
+LIGHTGRAY="\[\\e[0;37m\\]"
+DARKGRAY="\[\\e[1;30m\\]"
+LIGHTRED="\[\\e[1;31m\\]"
+LIGHTGREEN="\[\\e[1;32m\\]"
+YELLOW="\[\\e[1;33m\\]"
+LIGHTBLUE="\[\\e[1;34m\\]"
+LIGHTPURPLE="\[\\e[1;35m\\]"
+LIGHTCYAN="\[\\e[1;36m\\]"
+WHITE="\[\\e[1;37m\\]"
+export PS1="\n${WHITE}-${BROWN}\t${WHITE}- ${BROWN}\H${WHITE}:${LIGHTGRAY}\w${WHITE} :: ${BROWN}\u ${WHITE}% ${RESET}"
+
+# env variables
+export EDITOR=nano
